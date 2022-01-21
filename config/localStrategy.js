@@ -32,17 +32,12 @@ module.exports = (passport) => {
             email: newUser.email,
             nickname: newUser.nickname,
           });
-
-          // passport에서 로그인을 처리하는 방법
-          // req.login(req.body, () => {
-          //   res.redirect('/auth/profile')
-          // })
         } catch (error) {
           console.error(error);
           return done(new Error(error), false);
         }
-      },
-    ),
+      }
+    )
   );
 
   // login
@@ -69,7 +64,7 @@ module.exports = (passport) => {
           console.error(error);
           done(error);
         }
-      },
-    ),
+      }
+    )
   );
 };

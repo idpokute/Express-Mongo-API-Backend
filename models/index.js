@@ -13,8 +13,9 @@ module.exports = () => {
       mongoose.set("debug", true);
     }
 
+    // database name
     const config = {
-      dbName: "onlinegame",
+      dbName: "app",
     };
 
     if (MONGO_ID && MONGO_PASSWORD) {

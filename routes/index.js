@@ -1,55 +1,12 @@
 const express = require("express");
 const passport = require("passport");
-// const multer = require("multer");
-// const path = require("path");
-// const fs = require("fs");
 const router = express.Router();
 const passwordRouter = require("./password");
 const jwt = require("jsonwebtoken");
-// const authRouter = require("./authRouter");
 const secureRouter = require("./secure");
 const { isLoggedIn, isNotLoggedIn } = require("./middleware");
 
 const tokens = [];
-
-// router.use((req, res, next) => {
-//   res.locals.user = req.user;
-//   next();
-// });
-
-// router.get("/", (req, res) => {
-//   req.session.returnTo = req.originalUrl;
-//   res.render("index", {
-//     user: req.user,
-//   });
-// });
-
-// router.get("/signin", isNotLoggedIn, (req, res) => {
-//   let flash = req.flash();
-
-//   res.render("signin", {
-//     flash,
-//   });
-// });
-
-// router.get("/signup", isNotLoggedIn, (req, res) => {
-//   let flash = req.flash();
-
-//   res.render("signup", {
-//     flash,
-//   });
-// });
-
-// router.get("/profile", isLoggedIn, (req, res) => {
-//   let flash = req.flash();
-
-//   res.render("profile", {
-//     flash,
-//   });
-// });
-
-// router.use("/auth", authRouter);
-// router.use("/auction", auctionRouter);
 
 router.get("/status", (req, res) => {
   res.status(200).json({
@@ -66,7 +23,7 @@ router.post(
       message: "signup successful",
       status: 200,
     });
-  },
+  }
 );
 
 router.post("/login", (req, res, next) => {
