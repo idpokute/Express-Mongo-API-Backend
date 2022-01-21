@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "nodemon": "npx nodemon app.js",
-    "build": ""
+    "build": "",
+    "mongo:up": "docker-compose up -d",
+    "mongo:down": "docker-compose down"
   },
   "keywords": [],
   "author": "Sehui Park",
