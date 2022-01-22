@@ -7,7 +7,7 @@ const User = require("../models/user");
 const user = require("../models/user");
 
 // This app uses Google SMTP by nodemailer
-// .env needs following variable
+// .env needs following variables.
 /*
 EMAIL=your google email
 PASSWORD=Do not use your google password. You need create password for the app.
@@ -77,12 +77,13 @@ router.post("/forgot-password", async (req, res) => {
     // send user password reset email
     const html = await cons.nunjucks(templatePath, {
       name: userEmail,
-      url: `http://localhost:${process.env.PORT || 5000}?token=${token}`,
+      url: `${process.env.SITE_URL}:${process.env.PORT || 5000}?token=${token}`,
     });
+
     const emailOptions = {
       to: userEmail,
       from: email,
-      subject: "MMO password reset",
+      subject: "Your password reset",
       html,
     };
     await smtpTransport.sendMail(emailOptions);

@@ -11,6 +11,7 @@ Features
 Following .env is required.
 
 ```
+SITE_URL=http://localhost
 PORT=5000
 
 CORS_ORIGIN=http://localhost:8000
