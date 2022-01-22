@@ -47,10 +47,9 @@ app.use((req, res, next) => {
     message: "404 - not found",
     status: 404,
   });
-  next(err);
 });
 
-// 500
+// 500: Error handling
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status || 500).json({

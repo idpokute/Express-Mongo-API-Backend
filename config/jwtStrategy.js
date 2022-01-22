@@ -1,8 +1,8 @@
 const JwtStrategy = require("passport-jwt").Strategy;
-const User = require("../models/user");
 
 module.exports = (passport) => {
   passport.use(
+    "jwt",
     new JwtStrategy(
       {
         secretOrKey: process.env.JWT_SECRET,
@@ -19,7 +19,7 @@ module.exports = (passport) => {
           console.error(error);
           return done(new Error(error));
         }
-      },
-    ),
+      }
+    )
   );
 };

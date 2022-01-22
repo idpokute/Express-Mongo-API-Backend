@@ -1,8 +1,9 @@
 const local = require("./localStrategy");
 const jwt = require("./jwtStrategy");
-const User = require("../models/user");
+const anonymous = require("./anonymousStrategy");
 
 module.exports = (app, passport) => {
+  // When you use session, you can use this.
   // app.use(passport.initialize());
   // app.use(passport.session());
 
@@ -21,4 +22,5 @@ module.exports = (app, passport) => {
 
   local(passport);
   jwt(passport);
+  anonymous(passport);
 };

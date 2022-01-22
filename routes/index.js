@@ -4,16 +4,35 @@ const router = express.Router();
 const passwordRouter = require("./password");
 const jwt = require("jsonwebtoken");
 const secureRouter = require("./secure");
-const { isLoggedIn, isNotLoggedIn } = require("./middleware");
 
 const tokens = [];
 
 router.get("/status", (req, res) => {
+  console.log(req.user);
   res.status(200).json({
     message: "ok",
     status: 200,
   });
 });
+
+// Anonymous strategy with JWT example
+router.get(
+  "/logged-in-prohibited",
+  passport.authenticate(["jwt", "anonymous"], { session: false }),
+  (req, res) => {
+    if (req.user) {
+      res.status(401).json({
+        message: "Not allowed logged-in user",
+        status: 401,
+      });
+    } else {
+      res.status(200).json({
+        message: "ok",
+        status: 200,
+      });
+    }
+  }
+);
 
 router.post(
   "/signup",
@@ -101,6 +120,7 @@ router.post("/logout", (req, res) => {
   });
 });
 
+//
 router.post("/token", (req, res) => {
   const { refreshToken } = req.body;
 
@@ -132,6 +152,9 @@ router.post("/token", (req, res) => {
 });
 
 router.use("/", passwordRouter);
+
+// 404 and 500 error route are not processed, because passport.authenticate middle applied all route '/'.
+// Depends on you app structure, you need to adjust.
 router.use("/", passport.authenticate("jwt", { session: false }), secureRouter);
 
 module.exports = router;
